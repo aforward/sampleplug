@@ -15,4 +15,8 @@ defmodule Sampleplug.MessageTest do
     assert Message.hello("Andrew") == "Hello Andrew"
   end
 
+  test "should should handle spaces" do
+    assert Message.hello("Andrew Forward") == "Hello Andrew Forward"
+  end
+
 end

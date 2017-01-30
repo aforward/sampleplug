@@ -29,6 +29,7 @@ defmodule Sampleplug.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:ex_doc, "~> 0.14", only: :dev}]
+      {:ex_doc, "~> 0.14", only: :dev},
+      {:mix_test_watch, "~> 0.3", only: [:dev, :test]}]
   end
 end
