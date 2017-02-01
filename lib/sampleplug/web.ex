@@ -1,6 +1,7 @@
 defmodule Sampleplug.Web do  
   use Plug.Router
   require Logger
+  require EEx
 
   plug Plug.Logger
   plug :match
@@ -23,9 +24,18 @@ defmodule Sampleplug.Web do
     |> send_resp(200, "Hello World")
   end
 
+  get "/hello/:name" do
+    conn 
+    |> Plug.Conn.put_resp_content_type("text/html") 
+    |> Plug.Conn.send_resp(200, template_hello(name))
+  end
+
   match _ do  
     conn
     |> send_resp(404, "This isn't the page you are looking for")
   end 
+
+
+  EEx.function_from_file :defp, :template_hello, "lib/templates/hello.eex", [:name]
 
 end 
