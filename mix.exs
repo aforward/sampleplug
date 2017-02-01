@@ -14,9 +14,12 @@ defmodule Sampleplug.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger],
+    [applications: applications(Mix.env),
      mod: {Sampleplug, []}]
   end
+
+  defp applications(:dev), do: applications(:all) ++ [:ex_doc, :mix_test_watch]
+  defp applications(_), do: [:logger, :cowboy, :plug]
 
   # Dependencies can be Hex packages:
   #
@@ -30,6 +33,8 @@ defmodule Sampleplug.Mixfile do
   defp deps do
     [
       {:ex_doc, "~> 0.14", only: :dev},
-      {:mix_test_watch, "~> 0.3", only: [:dev, :test]}]
+      {:mix_test_watch, "~> 0.3", only: [:dev, :test]},
+      {:cowboy, "~> 1.0.0"},
+      {:plug, "~> 1.3"}]
   end
 end
