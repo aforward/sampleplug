@@ -1,0 +1,9 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= view.head_title %></title>
+  </head>
+  <body>
+    <%= templatefn.(view) %>
+  </body>
+</html>
