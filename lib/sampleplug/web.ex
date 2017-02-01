@@ -27,7 +27,7 @@ defmodule Sampleplug.Web do
   get "/hello/:name" do
     conn 
     |> Plug.Conn.put_resp_content_type("text/html") 
-    |> Plug.Conn.send_resp(200, template_hello(name))
+    |> Plug.Conn.send_resp(200, template_hello(%{name: name}))
   end
 
   match _ do  
@@ -36,6 +36,6 @@ defmodule Sampleplug.Web do
   end 
 
 
-  EEx.function_from_file :defp, :template_hello, "lib/templates/hello.eex", [:name]
+  EEx.function_from_file :defp, :template_hello, "lib/templates/hello.eex", [:view]
 
 end 
