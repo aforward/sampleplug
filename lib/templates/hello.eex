@@ -1,1 +1,2 @@
+<%= Sampleplug.Web.template_nav(view) %>
 <h1>Hello <%= view.name %></h1>
