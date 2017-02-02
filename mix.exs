@@ -19,7 +19,7 @@ defmodule Sampleplug.Mixfile do
   end
 
   defp applications(:dev), do: applications(:all) ++ [:ex_doc, :mix_test_watch]
-  defp applications(_), do: [:logger, :cowboy, :plug]
+  defp applications(_), do: [:logger, :cowboy, :plug, :ecto, :postgrex]
 
   # Dependencies can be Hex packages:
   #
@@ -35,6 +35,8 @@ defmodule Sampleplug.Mixfile do
       {:ex_doc, "~> 0.14", only: :dev},
       {:mix_test_watch, "~> 0.3", only: [:dev, :test]},
       {:cowboy, "~> 1.0.0"},
-      {:plug, "~> 1.3"}]
+      {:plug, "~> 1.3"},
+      {:ecto, "~> 2.1.3"},
+      {:postgrex, ">= 0.13.0"}]
   end
 end
