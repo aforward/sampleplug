@@ -7,3 +7,8 @@ config :sampleplug, Sampleplug.Repo, [
   password: "",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox]
+
+config :logger,
+  backends: [:console],
+  level: :warn,
+  compile_time_purge_level: :info
