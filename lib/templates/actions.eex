@@ -1,0 +1,9 @@
+<%= view.entity %> <%= view.id %>
+
+<%= if length(view.summary) == 0 do %>
+  <p>No actions!</p>
+<% else %>
+  <%= for name <- view.summary do %>
+    <p><%= name %></p>
+  <% end %>
+<% end %>

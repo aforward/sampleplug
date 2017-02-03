@@ -7,6 +7,7 @@ defmodule Sampleplug.Web do
   plug :match
   plug :dispatch
 
+  alias Sampleplug.Action
 
   def init(options) do
     options
@@ -32,13 +33,20 @@ defmodule Sampleplug.Web do
     |> Plug.Conn.send_resp(200, layout(&template_homepage/1, %{head_title: "Homepage", h1: conn.params["newH1"]}))
   end
 
-
   get "/hello/:name" do
     view = %{head_title: "Hello #{name}", name: name}
     conn 
     |> Plug.Conn.put_resp_content_type("text/html") 
     |> Plug.Conn.send_resp(200, layout(&template_hello/1, view))
   end
+
+  get "/:entity/:id" do
+    view = %{head_title: "#{entity} #{id}", entity: entity, id: id, summary: Action.summary(entity, id)}
+    conn 
+    |> Plug.Conn.put_resp_content_type("text/html") 
+    |> Plug.Conn.send_resp(200, layout(&template_actions/1, view))
+  end
+
 
   match _ do  
     conn
@@ -56,6 +64,8 @@ defmodule Sampleplug.Web do
   EEx.function_from_file :def, :layout, "lib/templates/layout.eex", [:templatefn, :view]
   EEx.function_from_file :def, :template_homepage, "lib/templates/homepage.eex", [:view]
   EEx.function_from_file :def, :template_hello, "lib/templates/hello.eex", [:view]
+  EEx.function_from_file :def, :template_actions, "lib/templates/actions.eex", [:view]
   EEx.function_from_file :def, :template_nav, "lib/templates/nav.eex", [:view]
+
 
 end 
